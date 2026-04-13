@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cybersecurity Infographic</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --red: #ff0033;
+    --red-dim: #cc0028;
+    --blue: #00aaff;
+    --blue-dim: #0077cc;
+    --cyan: #00ffff;
+    --white: #f0f4ff;
+    --black: #030610;
+    --dark: #070d1f;
+    --panel: #0a1428;
+    --grid: rgba(0,170,255,0.07);
+  }
+
+  body {
+    background: var(--black);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 20px;
+    font-family: 'Rajdhani', sans-serif;
+  }
+
+  .poster {
+    width: 450px;
+    min-height: 800px;
+    background: var(--dark);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(0,170,255,0.3);
+    box-shadow: 0 0 40px rgba(0,170,255,0.15), 0 0 80px rgba(255,0,51,0.08), inset 0 0 60px rgba(0,0,0,0.5);
+  }
+
+  /* Grid background */
+  .poster::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 30px 30px;
+    z-index: 0;
+  }
+
+  /* Scanlines */
+  .poster::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 3px,
+      rgba(0,0,0,0.12) 3px,
+      rgba(0,0,0,0.12) 4px
+    );
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .content { position: relative; z-index: 2; padding: 0; }
+
+  /* ── HEADER ── */
+  .header {
+    background: linear-gradient(135deg, #0a0018 0%, #030610 60%, #000a20 100%);
+    padding: 28px 24px 20px;
+    border-bottom: 2px solid var(--red);
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,0,51,0.18) 0%, transparent 70%);
+  }
+  .header-tag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: var(--red);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    animation: blink 2s step-end infinite;
+  }
+  @keyframes blink { 50% { opacity: 0.3; } }
+
+  .header h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 26px;
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  .header h1 span {
+    color: var(--red);
+    text-shadow: 0 0 12px rgba(255,0,51,0.8), 0 0 30px rgba(255,0,51,0.4);
+  }
+  .header-sub {
+    margin-top: 8px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--blue);
+    letter-spacing: 2px;
+    text-shadow: 0 0 8px rgba(0,170,255,0.6);
+  }
+
+  /* Shield hero */
+  .shield-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px 16px;
+    background: linear-gradient(180deg, #000a20 0%, transparent 100%);
+    border-bottom: 1px solid rgba(0,170,255,0.2);
+  }
+  .shield-wrap { position: relative; width: 90px; height: 100px; flex-shrink: 0; }
+  .shield-svg { width: 90px; height: 100px; filter: drop-shadow(0 0 10px rgba(0,170,255,0.7)); }
+  .shield-ring {
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,170,255,0.3);
+    animation: rotate 8s linear infinite;
+  }
+  .shield-ring::before {
+    content: '';
+    position: absolute;
+    top: -3px; left: 50%;
+    width: 6px; height: 6px;
+    background: var(--cyan);
+    border-radius: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 8px var(--cyan);
+  }
+  @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+  .hero-stat {
+    flex: 1;
+    padding-left: 20px;
+  }
+  .hero-num {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 38px;
+    font-weight: 900;
+    color: var(--red);
+    text-shadow: 0 0 16px rgba(255,0,51,0.8);
+    line-height: 1;
+  }
+  .hero-label {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.3;
+    margin-top: 4px;
+    letter-spacing: 0.5px;
+  }
+  .hero-sub {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px;
+    color: rgba(0,170,255,0.7);
+    margin-top: 4px;
+    letter-spacing: 1px;
+  }
+
+  /* ── THREAT METER ── */
+  .meter-section {
+    padding: 16px 24px;
+    border-bottom: 1px solid rgba(255,0,51,0.15);
+  }
+  .section-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--blue);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title::before {
+    content: '';
+    display: inline-block;
+    width: 16px; height: 2px;
+    background: var(--red);
+  }
+  .meter-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    font-family: 'Share Tech Mono', monospace;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .meter-bar {
+    height: 8px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(0,170,255,0.2);
+    margin-bottom: 10px;
+    position: relative;
+    overflow: hidden;
+  }
+  .meter-fill {
+    height: 100%;
+    position: relative;
+    animation: pulse-bar 3s ease-in-out infinite alternate;
+  }
+  @keyframes pulse-bar { from { opacity: 0.8; } to { opacity: 1; } }
+  .meter-fill::after {
+    content: '';
+    position: absolute;
+    right: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 6px currentColor;
+  }
+  .fill-red { background: linear-gradient(90deg, #400010, var(--red)); color: var(--red); width: 89%; }
+  .fill-blue { background: linear-gradient(90deg, #001040, var(--blue)); color: var(--blue); width: 74%; }
+  .fill-yellow { background: linear-gradient(90deg, #403000, #ffaa00); color: #ffaa00; width: 68%; }
+
+  /* ── STAT GRID ── */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(0,170,255,0.1);
+    border-top: 1px solid rgba(0,170,255,0.15);
+    border-bottom: 1px solid rgba(0,170,255,0.15);
+  }
+  .stat-card {
+    background: var(--panel);
+    padding: 14px 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+  }
+  .stat-card.accent-red::before { background: var(--red); box-shadow: 0 0 8px var(--red); }
+  .stat-card.accent-blue::before { background: var(--blue); box-shadow: 0 0 8px var(--blue); }
+  .stat-num {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 22px;
+    font-weight: 900;
+    line-height: 1;
+  }
+  .stat-card.accent-red .stat-num { color: var(--red); text-shadow: 0 0 10px rgba(255,0,51,0.6); }
+  .stat-card.accent-blue .stat-num { color: var(--blue); text-shadow: 0 0 10px rgba(0,170,255,0.6); }
+  .stat-desc {
+    font-size: 11px;
+    color: rgba(255,255,255,0.55);
+    margin-top: 5px;
+    line-height: 1.3;
+    font-weight: 500;
+  }
+
+  /* ── WHY MATTERS ── */
+  .reasons-section {
+    padding: 18px 24px;
+    border-bottom: 1px solid rgba(0,170,255,0.15);
+  }
+  .reason-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 13px;
+    padding-bottom: 13px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .reason-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .reason-icon {
+    width: 32px; height: 32px;
+    flex-shrink: 0;
+    border: 1px solid rgba(0,170,255,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    background: rgba(0,170,255,0.07);
+    clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
+  }
+  .reason-text { flex: 1; }
+  .reason-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 1px;
+    margin-bottom: 3px;
+  }
+  .reason-desc {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.4;
+    font-weight: 300;
+  }
+
+  /* ── ATTACK TYPES ── */
+  .attacks-section {
+    padding: 18px 24px;
+    border-bottom: 1px solid rgba(255,0,51,0.15);
+  }
+  .attack-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .attack-chip {
+    background: rgba(255,0,51,0.06);
+    border: 1px solid rgba(255,0,51,0.25);
+    padding: 10px 6px;
+    text-align: center;
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+    transition: all 0.3s;
+  }
+  .attack-chip:hover {
+    background: rgba(255,0,51,0.15);
+    border-color: var(--red);
+  }
+  .attack-icon { font-size: 18px; display: block; margin-bottom: 4px; }
+  .attack-name {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px;
+    color: var(--red);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* ── PILLARS ── */
+  .pillars-section {
+    padding: 18px 24px;
+    border-bottom: 1px solid rgba(0,170,255,0.15);
+  }
+  .pillar-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 9px;
+  }
+  .pillar-num {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 10px;
+    font-weight: 900;
+    color: var(--blue);
+    width: 22px;
+    flex-shrink: 0;
+  }
+  .pillar-bar-wrap { flex: 1; }
+  .pillar-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 3px;
+    letter-spacing: 0.5px;
+  }
+  .pillar-track {
+    height: 4px;
+    background: rgba(255,255,255,0.06);
+    position: relative;
+  }
+  .pillar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--blue-dim), var(--cyan));
+    box-shadow: 0 0 6px rgba(0,255,255,0.4);
+  }
+
+  /* ── QUOTE ── */
+  .quote-section {
+    margin: 0 24px 0;
+    padding: 16px;
+    border-left: 3px solid var(--red);
+    background: rgba(255,0,51,0.04);
+    border-bottom: 1px solid rgba(255,0,51,0.15);
+  }
+  .quote-text {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--white);
+    line-height: 1.5;
+    font-weight: 500;
+  }
+  .quote-author {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px;
+    color: var(--red);
+    margin-top: 6px;
+    letter-spacing: 2px;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    padding: 16px 24px;
+    background: linear-gradient(0deg, #000308 0%, transparent 100%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .footer-brand {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    color: rgba(0,170,255,0.5);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+  .corner-deco {
+    width: 40px; height: 40px;
+    border-top: 2px solid var(--red);
+    border-right: 2px solid var(--red);
+    position: absolute;
+    top: 0; right: 0;
+  }
+  .corner-deco-bl {
+    width: 40px; height: 40px;
+    border-bottom: 2px solid var(--blue);
+    border-left: 2px solid var(--blue);
+    position: absolute;
+    bottom: 0; left: 0;
+  }
+  .status-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #00ff88;
+    box-shadow: 0 0 8px #00ff88;
+    animation: pulse-dot 1.5s ease-in-out infinite;
+  }
+  @keyframes pulse-dot {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.4); opacity: 0.6; }
+  }
+
+  /* Glitch effect on h1 */
+  @keyframes glitch {
+    0%, 90%, 100% { clip-path: none; transform: none; }
+    92% { clip-path: polygon(0 20%, 100% 20%, 100% 40%, 0 40%); transform: translate(-2px, 0); }
+    94% { clip-path: polygon(0 60%, 100% 60%, 100% 80%, 0 80%); transform: translate(2px, 0); }
+    96% { clip-path: none; transform: none; }
+  }
+  .glitch { animation: glitch 5s infinite; }
+
+  .divider {
+    height: 1px;
+    margin: 0 24px;
+    background: linear-gradient(90deg, transparent, rgba(0,170,255,0.4), transparent);
+  }
+</style>
+</head>
+<body>
+<div class="poster">
+  <div class="corner-deco"></div>
+  <div class="corner-deco-bl"></div>
+
+  <div class="content">
+
+    <!-- HEADER -->
+    <div class="header">
+      <div class="header-tag">▶ THREAT LEVEL: CRITICAL // 2025</div>
+      <h1 class="glitch">THE IMPORTANCE OF <span>CYBER</span><br>SECURITY</h1>
+      <div class="header-sub">// IN TODAY'S DIGITAL WORLD //</div>
+    </div>
+
+    <!-- SHIELD + HERO STAT -->
+    <div class="shield-section">
+      <div class="shield-wrap">
+        <div class="shield-ring"></div>
+        <svg class="shield-svg" viewBox="0 0 90 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M45 5 L80 18 L80 50 C80 72 45 95 45 95 C45 95 10 72 10 50 L10 18 Z"
+            fill="rgba(0,20,60,0.8)" stroke="#00aaff" stroke-width="1.5"/>
+          <path d="M45 12 L73 23 L73 50 C73 68 45 87 45 87 C45 87 17 68 17 50 L17 23 Z"
+            fill="rgba(0,10,40,0.5)" stroke="rgba(0,170,255,0.4)" stroke-width="0.5"/>
+          <!-- lock icon -->
+          <rect x="34" y="47" width="22" height="18" rx="2" fill="none" stroke="#00ffff" stroke-width="1.5"/>
+          <path d="M38 47 L38 42 Q45 35 52 42 L52 47" fill="none" stroke="#00ffff" stroke-width="1.5"/>
+          <circle cx="45" cy="55" r="3" fill="#ff0033"/>
+          <line x1="45" y1="58" x2="45" y2="62" stroke="#ff0033" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-num">$10.5T</div>
+        <div class="hero-label">Projected Global Cybercrime<br>Cost Annually by 2025</div>
+        <div class="hero-sub">// SOURCE: CYBERSECURITY VENTURES</div>
+      </div>
+    </div>
+
+    <!-- THREAT METERS -->
+    <div class="meter-section">
+      <div class="section-title">Threat Intensity Index</div>
+      <div class="meter-label"><span>Ransomware Attacks</span><span style="color:var(--red)">89%</span></div>
+      <div class="meter-bar"><div class="meter-fill fill-red"></div></div>
+      <div class="meter-label"><span>Data Breach Incidents</span><span style="color:var(--blue)">74%</span></div>
+      <div class="meter-bar"><div class="meter-fill fill-blue"></div></div>
+      <div class="meter-label"><span>Phishing Campaigns</span><span style="color:#ffaa00">68%</span></div>
+      <div class="meter-bar"><div class="meter-fill fill-yellow"></div></div>
+    </div>
+
+    <!-- STATS GRID -->
+    <div class="stats-grid">
+      <div class="stat-card accent-red">
+        <div class="stat-num">2,200+</div>
+        <div class="stat-desc">Cyberattacks occur every single day worldwide</div>
+      </div>
+      <div class="stat-card accent-blue">
+        <div class="stat-num">$4.88M</div>
+        <div class="stat-desc">Average cost of a data breach in 2024</div>
+      </div>
+      <div class="stat-card accent-blue">
+        <div class="stat-num">95%</div>
+        <div class="stat-desc">Of breaches caused by human error</div>
+      </div>
+      <div class="stat-card accent-red">
+        <div class="stat-num">39 sec</div>
+        <div class="stat-desc">A new attack happens every 39 seconds</div>
+      </div>
+    </div>
+
+    <!-- WHY IT MATTERS -->
+    <div class="reasons-section">
+      <div class="section-title">Why It Matters</div>
+
+      <div class="reason-item">
+        <div class="reason-icon">🏛️</div>
+        <div class="reason-text">
+          <div class="reason-title">National Security</div>
+          <div class="reason-desc">Critical infrastructure — power grids, hospitals, finance — are prime targets for state-sponsored attacks.</div>
+        </div>
+      </div>
+      <div class="reason-item">
+        <div class="reason-icon">💼</div>
+        <div class="reason-text">
+          <div class="reason-title">Business Continuity</div>
+          <div class="reason-desc">60% of small businesses close within 6 months of a cyberattack. Security is survival.</div>
+        </div>
+      </div>
+      <div class="reason-item">
+        <div class="reason-icon">🔒</div>
+        <div class="reason-text">
+          <div class="reason-title">Personal Privacy</div>
+          <div class="reason-desc">Identity theft, financial fraud, and data exposure affect billions of individuals annually.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ATTACK TYPES -->
+    <div class="attacks-section">
+      <div class="section-title">Top Threat Vectors</div>
+      <div class="attack-grid">
+        <div class="attack-chip">
+          <span class="attack-icon">🎣</span>
+          <span class="attack-name">Phishing</span>
+        </div>
+        <div class="attack-chip">
+          <span class="attack-icon">🔐</span>
+          <span class="attack-name">Ransomware</span>
+        </div>
+        <div class="attack-chip">
+          <span class="attack-icon">🕵️</span>
+          <span class="attack-name">Malware</span>
+        </div>
+        <div class="attack-chip">
+          <span class="attack-icon">💣</span>
+          <span class="attack-name">DDoS</span>
+        </div>
+        <div class="attack-chip">
+          <span class="attack-icon">🪪</span>
+          <span class="attack-name">Identity Theft</span>
+        </div>
+        <div class="attack-chip">
+          <span class="attack-icon">🕸️</span>
+          <span class="attack-name">Zero-Day</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- DEFENSE PILLARS -->
+    <div class="pillars-section">
+      <div class="section-title">Core Defense Pillars</div>
+      <div class="pillar-row">
+        <div class="pillar-num">01</div>
+        <div class="pillar-bar-wrap">
+          <div class="pillar-label">Encryption & Data Protection</div>
+          <div class="pillar-track"><div class="pillar-fill" style="width:92%"></div></div>
+        </div>
+      </div>
+      <div class="pillar-row">
+        <div class="pillar-num">02</div>
+        <div class="pillar-bar-wrap">
+          <div class="pillar-label">Multi-Factor Authentication</div>
+          <div class="pillar-track"><div class="pillar-fill" style="width:88%"></div></div>
+        </div>
+      </div>
+      <div class="pillar-row">
+        <div class="pillar-num">03</div>
+        <div class="pillar-bar-wrap">
+          <div class="pillar-label">Zero Trust Architecture</div>
+          <div class="pillar-track"><div class="pillar-fill" style="width:80%"></div></div>
+        </div>
+      </div>
+      <div class="pillar-row">
+        <div class="pillar-num">04</div>
+        <div class="pillar-bar-wrap">
+          <div class="pillar-label">Security Awareness Training</div>
+          <div class="pillar-track"><div class="pillar-fill" style="width:85%"></div></div>
+        </div>
+      </div>
+      <div class="pillar-row">
+        <div class="pillar-num">05</div>
+        <div class="pillar-bar-wrap">
+          <div class="pillar-label">Incident Response Planning</div>
+          <div class="pillar-track"><div class="pillar-fill" style="width:76%"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- QUOTE -->
+    <div class="quote-section" style="margin-top:16px; margin-bottom:0;">
+      <div class="quote-text">"It takes 20 years to build a reputation and a few minutes of a cyber incident to ruin it."</div>
+      <div class="quote-author">— STEPHANE NAPPO // GLOBAL CISO</div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <div class="footer-brand">CYBER//SECURE · 2025</div>
+      <div class="status-dot"></div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
